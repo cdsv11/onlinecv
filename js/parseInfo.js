@@ -25,6 +25,7 @@ function drawStats(statsDataArray){
     $("#stats_blog").text(statsDataArray['Blog Posts']);
     $("#stats_coffee").text(statsDataArray['Cups of Coffee']);
     $("#stats_hours").text(statsDataArray['Hours']);
+    $("#stats_places").text(statsDataArray['Countries']);
 }
 
 function callStats(){
