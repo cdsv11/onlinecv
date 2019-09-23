@@ -25,6 +25,12 @@
    ================================================== -->   
 	<script src="js/modernizr.js"></script>
 	<script src="js/pace.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- script to read cell info
+	================================================= -->
+	<script src="js/parseInfo.js"></script>
+	
 
    <!-- favicons
 	================================================== -->
@@ -70,8 +76,8 @@
 
    			<div class="col-twelve">
 
-	   			<h5>Hello World</h5>
-	   			<h1>I'm Daniel Vieira.</h1>
+	   			<h5 id="initial_message">Hello World</h5>
+	   			<h1 id="initial_message2">I'm Daniel Vieira.</h1>
 
 	   			<p class="intro-position">
 	   				<span>Software Engineer</span>
@@ -102,7 +108,7 @@
 
    				<img src="images/profile-pic.jpg" alt="Profile Picture">
 
-   				<p class="lead">I like to think of myself as a person that gets along with others and I really enjoy connecting with them. I started my career in technology as soon as I could and I've been enjoying the path of software engineering and development, proving technology and engineering can be fun and interesting!</p>
+   				<p id="about_message" class="lead">I like to think of myself as a person that gets along with others and I really enjoy connecting with them. I started my career in technology as soon as I could and I've been enjoying the path of software engineering and development, proving technology and engineering can be fun and interesting!</p>
    			</div>   			
 
    		</div>   		
@@ -113,7 +119,7 @@
    		<div class="col-six tab-full">
 
    			<h3>Profile</h3>
-   			<p>I work well in teams, quickly adapting to new environments and people. I'm a happy person, well organized and specially fond of coffee. Just bring me a cup of coffee to easily break the ice.</p>
+   			<p id="profile_message">I work well in teams, quickly adapting to new environments and people. I'm a happy person, well organized and specially fond of coffee. Just bring me a cup of coffee to easily break the ice.</p>
 
    			<ul class="info-list">
    				<li>
@@ -151,7 +157,7 @@
    		<div class="col-six tab-full">
 
    			<h3>Skills</h3>
-   			<p>I have a very strong and broad skill set which I try to get even broader by constantly embracing different projects and self learning tasks. Mostly in backend, my key skills are:</p>
+   			<p id="skills_message">I have a very strong and broad skill set which I try to get even broader by constantly embracing different projects and self learning tasks. Mostly in backend, my key skills are:</p>
 
 				<ul class="skill-bars">
 				   <li>
@@ -203,7 +209,7 @@
    			<h5>Resume</h5>
    			<h1>What have I achieved?</h1>
 
-   			<p class="lead">My path so far as been a bond between work and education because I believe in, not only applying new knowledge in companies, but also not getting work to stop our education and self improvement.</p>
+   			<p id="resume_message" class="lead">My path so far as been a bond between work and education because I believe in, not only applying new knowledge in companies, but also not getting work to stop our education and self improvement.</p>
 
    		</div>   		
    	</div> <!-- /section-intro--> 
@@ -411,8 +417,8 @@
 							<i class="icon-pencil-ruler"></i>
 						</div>
 
-						<h3 class="stat-count">
-							1500
+						<h3 id="stats_projects" class="stat-count">
+							0
 						</h3>
 
 						<h5 class="stat-title">
@@ -427,8 +433,8 @@
 							<i class="icon-users"></i>
 						</div>
 
-						<h3 class="stat-count">
-							900
+						<h3 id="stats_clients" class="stat-count">
+							0
 						</h3>
 
 						<h5 class="stat-title">
@@ -437,21 +443,6 @@
 
 					</div> <!-- /stat -->
 
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="icon-badge"></i>
-						</div>
-
-						<h3 class="stat-count">
-							200
-						</h3>
-
-						<h5 class="stat-title">
-							Awards Received
-						</h5>
-
-					</div> <!-- /stat -->									
 
 					<div class="bgrid stat">
 
@@ -459,12 +450,12 @@
 							<i class="icon-light-bulb"></i>
 						</div>
 
-						<h3 class="stat-count">
-							120
+						<h3 id="stats_blog" class="stat-count">
+							0
 						</h3>
 
 						<h5 class="stat-title">
-							Crazy Ideas
+							Blog Posts
 						</h5>
 
 					</div> <!-- /stat -->
@@ -475,7 +466,7 @@
 							<i class="icon-cup"></i>
 						</div>
 
-						<h3 class="stat-count">
+						<h3 id="stats_coffee" class="stat-count">
 							1500
 						</h3>
 
@@ -491,7 +482,7 @@
 							<i class="icon-clock"></i>
 						</div>
 
-						<h3 class="stat-count">
+						<h3 id="stats_hours" class="stat-count">
 							7200
 						</h3>
 
