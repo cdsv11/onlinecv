@@ -1,7 +1,9 @@
 var statsJson = null;
 var messagesJson = null;
+var skillsJson = null;
 var statsDataArray = [];
 var messagesDataArray = [];
+var skillsDataArray = [];
 
 function readData(sheetData) {
     var data = sheetData;
@@ -60,14 +62,45 @@ function doMessagesJson(json){
     messagesJson = json.feed.entry;
 }
 
+
+//Skills
+function drawSkills(skillsDataArray){
+    var keys= Object.keys(skillsDataArray);
+    for(var i=0;i<keys.length;i++){
+        var value= messagesDataArray[keys[i]];
+        //search for a way to duplicate the blocks from timelines. (is skills only on one page or 2? cause there is 2 timelines)
+    
+    }
+
+}
+
+
+function callSkills(){
+    return $.ajax({
+        dataType: "json",
+        url: "https://spreadsheets.google.com/feeds/cells/1sKjUgTuTUz77IvSWWavdIzjcNRCfW4WKwoGRCNH2B0E/3/public/values?alt=json",
+        success: doSkillsJson
+      });
+}
+function doSkillsJson(json){
+    skillsJson = json.feed.entry;
+}
+
+
 $(window).on('load', function(){
     $.when(callMessages()).done(function(response){
         drawMessages(readData(messagesJson));
+    });
+    $.when(callSkills()).done(function(response){
+        drawSkills(readData(skillsJson));
     });
     $.when(callStats()).done(function(response){
         drawStats(readData(statsJson));
     });
     
 });
+
+
+
 
 
