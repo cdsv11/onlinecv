@@ -1,6 +1,8 @@
 var statsJson = null;
 var messagesJson = null;
 var skillsJson = null;
+var quotesJson = null;
+
 
 function readData(sheetData) {
     var data = sheetData;
@@ -80,7 +82,6 @@ function drawSkills(skillsDataArray){
         li.appendChild(strong);
         list.appendChild(li);
     }
-
 }
 
 
@@ -95,6 +96,35 @@ function doSkillsJson(json){
     skillsJson = json.feed.entry;
 }
 
+//Quotes
+
+function readQuotes(sheetData){
+    var data = sheetData;
+    var dataArray=[];
+    for(var r=0; r<data.length; r++) {
+        var cell = data[r]["gs$cell"];
+        var val = cell["$t"];
+        dataArray[r]=val;
+    }
+    return dataArray;
+}
+
+function drawQuote(dataArray){
+    document.getElementById("quote_message").innerText=dataArray[Math.floor(Math.random()*dataArray.length)];
+}
+
+
+function callQuotes(){
+    return $.ajax({
+        dataType: "json",
+        url: "https://spreadsheets.google.com/feeds/cells/1sKjUgTuTUz77IvSWWavdIzjcNRCfW4WKwoGRCNH2B0E/4/public/values?alt=json",
+        success: doQuotesJson
+      });
+}
+function doQuotesJson(json){
+    quotesJson = json.feed.entry;
+}
+
 
 //timeline Work
 //TODO
@@ -103,13 +133,16 @@ function doSkillsJson(json){
 
 
 $(window).on('load', function(){
-    $.when(callMessages()).done(function(response){
+    $.when(callQuotes()).done(function(response){ //quotes
+        drawQuote(readQuotes(quotesJson));
+    });
+    $.when(callMessages()).done(function(response){ //messages
         drawMessages(readData(messagesJson));
     });
-    $.when(callSkills()).done(function(response){
+    $.when(callSkills()).done(function(response){ //skills
         drawSkills(readData(skillsJson));
     });
-    $.when(callStats()).done(function(response){
+    $.when(callStats()).done(function(response){ //stats
         drawStats(readData(statsJson));
     });
     
