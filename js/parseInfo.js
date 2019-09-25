@@ -1,21 +1,18 @@
 var statsJson = null;
 var messagesJson = null;
 var skillsJson = null;
-var statsDataArray = [];
-var messagesDataArray = [];
-var skillsDataArray = [];
 
 function readData(sheetData) {
     var data = sheetData;
-    
+    var dataArray=[];
     for(var r=0; r<data.length; r=r+2) {
         var cell = data[r]["gs$cell"];
         var val = cell["$t"];
         var cell2 = data[r+1]["gs$cell"];
         var val2 = cell2["$t"];
-        statsDataArray[val]=val2;
+        dataArray[val]=val2;
     }
-    return statsDataArray;
+    return dataArray;
 }
 
 
@@ -66,10 +63,22 @@ function doMessagesJson(json){
 //Skills
 function drawSkills(skillsDataArray){
     var keys= Object.keys(skillsDataArray);
+    var list=document.getElementById("list_skills");
     for(var i=0;i<keys.length;i++){
-        var value= messagesDataArray[keys[i]];
-        //search for a way to duplicate the blocks from timelines. (is skills only on one page or 2? cause there is 2 timelines)
-    
+        var key=keys[i];
+        var value= skillsDataArray[key];
+        var li= document.createElement("li");
+        var div= document.createElement("div");
+        div.classList.add("progress");
+        div.classList.add("percent"+value);
+        var span= document.createElement("span");
+        span.innerText=value+"%";
+        var strong = document.createElement("strong");        
+        strong.innerText=key;
+        div.appendChild(span);
+        li.appendChild(div);
+        li.appendChild(strong);
+        list.appendChild(li);
     }
 
 }
@@ -85,6 +94,12 @@ function callSkills(){
 function doSkillsJson(json){
     skillsJson = json.feed.entry;
 }
+
+
+//timeline Work
+//TODO
+//timeline education 
+//TODO
 
 
 $(window).on('load', function(){
